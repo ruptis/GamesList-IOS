@@ -15,7 +15,7 @@ struct GameCardView: View {
             Image(systemName: "globe")
                 .resizable()
                 .aspectRatio(contentMode: .fill)
-                .frame(width: .infinity, height: 100)
+                .frame(width: .infinity, height: 90)
                 .cornerRadius(10)
                 .clipped()
 

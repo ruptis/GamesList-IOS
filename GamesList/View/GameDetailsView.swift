@@ -18,7 +18,7 @@ struct GameDetailsView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(height: 250)
-                    .background(Color.red)
+                    .background(Color.gray)
 
                 VStack(spacing: 10) {
                     Text(game.title)

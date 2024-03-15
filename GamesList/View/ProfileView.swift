@@ -11,6 +11,8 @@ import SwiftUI
 struct ProfileView: View {
     var user: User
 
+    @State private var isEditing = false
+
     var body: some View {
         VStack(spacing: 20) {
             Image(systemName: "person.circle")
@@ -53,7 +55,7 @@ struct ProfileView: View {
             Spacer()
 
             Button(action: {
-
+                isEditing.toggle()
             }) {
                 PrimaryButton(text: "Edit Profile")
             }
@@ -66,6 +68,11 @@ struct ProfileView: View {
                 .padding(.bottom, 20)
         }
             .padding()
+            .navigationTitle("Profile")
+            .navigationBarTitleDisplayMode(.inline)
+            .sheet(isPresented: $isEditing) {
+                EditProfileView()
+            }
     }
 }
 
