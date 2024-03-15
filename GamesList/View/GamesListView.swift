@@ -9,16 +9,25 @@
 import SwiftUI
 
 struct GamesListView: View {
+    var games: [Game] = Game.MOCKS
+
     var body: some View {
         NavigationStack {
             ScrollView(showsIndicators: false) {
-                LazyVStack {
-                    ForEach(0..<10) { _ in
-                        GameCardView().padding(10)
+                LazyVStack(spacing: 20) {
+                    ForEach(games, id: \.id) { game in
+                        NavigationLink(value: game) {
+                            GameCardView(game: game)
+                                .padding(.horizontal, 10)
+                        }
                     }
                 }
             }
-                    .navigationTitle("Games")
+                .navigationTitle("Games")
+                .navigationBarTitleDisplayMode(.inline)
+                .navigationDestination(for: Game.self) { game in
+                    GameDetailsView(game: game)
+                }
         }
     }
 }

@@ -20,14 +20,14 @@ struct WelcomeView: View {
         NavigationStack(path: $path) {
             VStack(alignment: .center) {
                 Image(systemName: "gamecontroller")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 200, height: 200)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 200, height: 200)
 
                 Text("Games List")
-                        .font(.title)
-                        .fontWeight(.bold)
-                        .padding(.top, 10)
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .padding(.top, 10)
 
                 VStack(spacing: 20) {
                     NavigationLink(value: AuthState.signIn) {
@@ -38,19 +38,19 @@ struct WelcomeView: View {
                         PrimaryButton(text: "Sign Up")
                     }
                 }
-                        .padding(.top, 30)
-                        .padding(.horizontal, 30)
-                        .navigationDestination(for: AuthState.self) { state in
-                            switch state {
-                            case .signIn:
-                                SignInView(path: $path)
-                            case .signUp:
-                                SignUpView(path: $path)
-                            }
+                    .padding(.top, 30)
+                    .padding(.horizontal, 30)
+                    .navigationDestination(for: AuthState.self) { state in
+                        switch state {
+                        case .signIn:
+                            SignInView(path: $path)
+                        case .signUp:
+                            SignUpView(path: $path)
                         }
+                    }
 
             }
-                    .padding()
+                .padding()
         }
     }
 }

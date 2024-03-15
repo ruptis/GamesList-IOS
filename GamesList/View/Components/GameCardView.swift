@@ -8,42 +8,45 @@
 import SwiftUI
 
 struct GameCardView: View {
+    var game: Game
+
     var body: some View {
         VStack {
             Image(systemName: "globe")
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: .infinity, height: 100)
-                    .cornerRadius(10)
-                    .clipped()
-                    .padding(.bottom, 10)
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: .infinity, height: 100)
+                .cornerRadius(10)
+                .clipped()
 
-            Text("Game")
-                    .font(.title3)
-                    .fontWeight(.semibold)
-                    .foregroundColor(.primary)
+            Text(game.title)
+                .font(.title3)
+                .fontWeight(.semibold)
+                .foregroundColor(.primary)
 
             Spacer()
 
             HStack(alignment: .bottom) {
                 VStack(alignment: .leading) {
                     HStack {
-                        Text("Action")
+                        ForEach(game.genres, id: \.self) { genre in
+                            Text(genre)
                                 .font(.caption)
                                 .fontWeight(.semibold)
                                 .foregroundColor(.secondary)
-
-                        Text("Adventure")
-                                .font(.caption)
-                                .fontWeight(.semibold)
-                                .foregroundColor(.secondary)
+                                .padding(5)
+                                .background(Color(.systemGray5))
+                                .cornerRadius(5)
+                        }
                     }
 
                     HStack {
-                        Image(systemName: "desktopcomputer")
+                        ForEach(game.platforms, id: \.self) { platform in
+                            Image(platform.image)
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 20, height: 20)
+                        }
                     }
                 }
 
@@ -54,25 +57,24 @@ struct GameCardView: View {
 
                     }) {
                         Image(systemName: "heart")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 30, height: 30)
-                                .foregroundColor(.secondary)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 30, height: 30)
+                            .foregroundColor(.secondary)
                     }
                 }
             }
-                    .padding(.horizontal, 10)
-                    .padding(.bottom, 10)
+                .padding(10)
         }
-                .frame(width: .infinity, height: 200)
-                .background(Color(.secondarySystemBackground))
-                .cornerRadius(10)
-                .shadow(color: Color(.systemGray), radius: 5, x: 0, y: 0)
+            .frame(width: .infinity, height: 200)
+            .background(Color(.secondarySystemBackground))
+            .cornerRadius(10)
+            .shadow(color: Color(.systemGray), radius: 5, x: 0, y: 0)
     }
 }
 
 struct GameCardView_Previews: PreviewProvider {
     static var previews: some View {
-        GameCardView().padding(10)
+        GameCardView(game: Game.MOCK).padding(10)
     }
 }

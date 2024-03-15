@@ -17,12 +17,12 @@ struct SignUpView: View {
     var body: some View {
         VStack(alignment: .center) {
             Text("Sign In")
-                    .font(.largeTitle)
-                    .padding()
+                .font(.largeTitle)
+                .padding()
 
             VStack(alignment: .leading, spacing: 20) {
                 InputView(text: $email, title: "Email", placeholder: "name@example.com")
-                        .autocapitalization(.none)
+                    .autocapitalization(.none)
 
                 InputView(text: $email, title: "Name", placeholder: "name")
 
@@ -35,9 +35,9 @@ struct SignUpView: View {
                 }) {
                     PrimaryButton(text: "Sign Up")
                 }
-                        .padding(.top, 30)
+                    .padding(.top, 30)
             }
-                    .padding([.top, .leading, .trailing], 32)
+                .padding([.top, .leading, .trailing], 32)
 
             Spacer()
 
@@ -48,12 +48,12 @@ struct SignUpView: View {
                     Text("Already have an account?")
 
                     Text("Sign In")
-                            .fontWeight(.semibold)
+                        .fontWeight(.semibold)
                 }
-                        .accentColor(Color(.systemIndigo))
+                    .accentColor(Color(.systemIndigo))
             }
         }
-                .navigationBarBackButtonHidden(true)
+            .navigationBarBackButtonHidden(true)
     }
 }
 

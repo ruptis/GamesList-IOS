@@ -11,9 +11,9 @@ struct InputView: View {
     @Binding var text: String
     var title: String
     var placeholder: String
-    
+
     var isSecure = false
-    
+
     var body: some View {
         VStack(alignment: .leading) {
             Text(title)

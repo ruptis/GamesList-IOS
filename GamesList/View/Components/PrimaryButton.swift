@@ -10,15 +10,15 @@ import SwiftUI
 struct PrimaryButton: View {
     let text: String
     let backgroundColor = Color(.systemIndigo)
-    
+
     var body: some View {
         Text(text)
-                .fontWeight(.bold)
-                .foregroundColor(.white)
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(backgroundColor)
-                .cornerRadius(10)
+            .fontWeight(.bold)
+            .foregroundColor(.white)
+            .padding()
+            .frame(maxWidth: .infinity)
+            .background(backgroundColor)
+            .cornerRadius(10)
     }
 }
 
