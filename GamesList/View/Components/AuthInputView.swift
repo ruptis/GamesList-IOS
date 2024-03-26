@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct InputView: View {
+struct AuthInputView: View {
     @Binding var text: String
     var title: String
     var placeholder: String
@@ -35,8 +35,8 @@ struct InputView: View {
     }
 }
 
-struct InputView_Previews: PreviewProvider {
+struct AuthInputView_Previews: PreviewProvider {
     static var previews: some View {
-        InputView(text: .constant(""), title: "Email", placeholder: "name@example.com")
+        AuthInputView(text: .constant(""), title: "Email", placeholder: "name@example.com")
     }
 }

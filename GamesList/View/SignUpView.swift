@@ -21,14 +21,14 @@ struct SignUpView: View {
                 .padding()
 
             VStack(alignment: .leading, spacing: 20) {
-                InputView(text: $email, title: "Email", placeholder: "name@example.com")
+                AuthInputView(text: $email, title: "Email", placeholder: "name@example.com")
                     .autocapitalization(.none)
 
-                InputView(text: $email, title: "Name", placeholder: "name")
+                AuthInputView(text: $email, title: "Name", placeholder: "name")
 
-                InputView(text: $password, title: "Password", placeholder: "**********")
+                AuthInputView(text: $password, title: "Password", placeholder: "**********")
 
-                InputView(text: $password, title: "Confirm password", placeholder: "**********")
+                AuthInputView(text: $password, title: "Confirm password", placeholder: "**********")
 
                 Button(action: {
 

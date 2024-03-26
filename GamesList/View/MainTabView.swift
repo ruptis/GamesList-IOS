@@ -33,7 +33,6 @@ struct MainTabView: View {
                 }
                 .tag(2)
         }
-            .accentColor(Color(.systemIndigo))
     }
 }
 

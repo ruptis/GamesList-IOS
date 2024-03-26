@@ -20,10 +20,10 @@ struct SignInView: View {
                 .padding()
 
             VStack(alignment: .leading, spacing: 20) {
-                InputView(text: $email, title: "Email", placeholder: "name@example.com")
+                AuthInputView(text: $email, title: "Email", placeholder: "name@example.com")
                     .autocapitalization(.none)
 
-                InputView(text: $password, title: "Password", placeholder: "**********")
+                AuthInputView(text: $password, title: "Password", placeholder: "**********")
 
                 Button(action: {
 
