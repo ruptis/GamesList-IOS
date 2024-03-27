@@ -7,17 +7,13 @@
 //
 
 import SwiftUI
+import Factory
 
 struct WelcomeView: View {
-    @State private var path = [AuthState]()
-
-    enum AuthState {
-        case signIn
-        case signUp
-    }
+    @InjectedObject(\.welcomeViewModel) private var viewModel
 
     var body: some View {
-        NavigationStack(path: $path) {
+        NavigationStack(path: $viewModel.path) {
             VStack(alignment: .center) {
                 Image(systemName: "gamecontroller")
                     .resizable()
@@ -30,27 +26,26 @@ struct WelcomeView: View {
                     .padding(.top, 10)
 
                 VStack(spacing: 20) {
-                    NavigationLink(value: AuthState.signIn) {
+                    NavigationLink(value: WelcomeViewModel.AuthState.signIn) {
                         PrimaryButton(text: "Sign In")
                     }
 
-                    NavigationLink(value: AuthState.signUp) {
+                    NavigationLink(value: WelcomeViewModel.AuthState.signUp) {
                         PrimaryButton(text: "Sign Up")
                     }
                 }
                     .padding(.top, 30)
                     .padding(.horizontal, 30)
-                    .navigationDestination(for: AuthState.self) { state in
+                    .navigationDestination(for: WelcomeViewModel.AuthState.self) { state in
                         switch state {
                         case .signIn:
-                            SignInView(path: $path)
+                            SignInView()
                         case .signUp:
-                            SignUpView(path: $path)
+                            SignUpView()
                         }
                     }
 
             }
-                .padding()
         }
     }
 }

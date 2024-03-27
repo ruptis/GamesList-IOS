@@ -7,17 +7,18 @@
 //
 
 import SwiftUI
+import Factory
 
 struct GamesListView: View {
-    var games: [Game] = Game.MOCKS
+    @State var games: [Game] = (0..<15).map { Game.Mock(id: "\($0)")}
 
     var body: some View {
         NavigationStack {
             ScrollView(showsIndicators: false) {
                 LazyVStack(spacing: 20) {
-                    ForEach(games, id: \.id) { game in
+                    ForEach($games, id: \.id) { $game in
                         NavigationLink(value: game) {
-                            GameCardView(game: game)
+                            GameCardView(game: $game)
                                 .padding(.horizontal, 10)
                         }
                     }

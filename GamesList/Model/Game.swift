@@ -15,57 +15,15 @@ struct Game: Identifiable, Hashable, Codable {
     var description: String
     var screenshots: [String]
     var cover: String
-}
-
-struct Platform: Hashable, Codable {
-    var name: String
-    var image: String
-}
-
-extension Game {
-    static var MOCK: Game {
-        Game(id: "1",
-             title: "Game Title",
-             releaseDate: "01.01.2020",
-             platforms: [Platform(name: "Platform", image: "platformImage")],
-             genres: ["Action", "Adventure"],
-             developer: "Developer",
-             publisher: "Publisher",
-             description: "Game description",
-             screenshots: ["screenshot1", "screenshot2"],
-             cover: "cover")
+    
+    var status: Status?
+    
+    struct Platform: Hashable, Codable {
+        var name: String
+        var image: String
     }
-
-    static var MOCKS: [Game] {
-        [Game(id: "1",
-              title: "Game Title",
-              releaseDate: "01.01.2020",
-              platforms: [Platform(name: "Platform", image: "platformImage")],
-              genres: ["Action", "Adventure"],
-              developer: "Developer",
-              publisher: "Publisher",
-              description: "Game description",
-              screenshots: ["screenshot1", "screenshot2"],
-              cover: "cover"),
-         Game(id: "2",
-              title: "Game Title",
-              releaseDate: "01.01.2020",
-              platforms: [Platform(name: "Platform", image: "platformImage")],
-              genres: ["Action", "Adventure"],
-              developer: "Developer",
-              publisher: "Publisher",
-              description: "Game description",
-              screenshots: ["screenshot1", "screenshot2"],
-              cover: "cover"),
-         Game(id: "3",
-              title: "Game Title",
-              releaseDate: "01.01.2020",
-              platforms: [Platform(name: "Platform", image: "platformImage")],
-              genres: ["Action", "Adventure"],
-              developer: "Developer",
-              publisher: "Publisher",
-              description: "Game description",
-              screenshots: ["screenshot1", "screenshot2"],
-              cover: "cover")]
+    
+    enum Status: String, CaseIterable, Codable {
+        case Playing, Planning, Passed, Abandoned
     }
 }

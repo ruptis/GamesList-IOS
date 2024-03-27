@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct GameCardView: View {
-    var game: Game
+    @ObservedObject var viewModel: GameCardViewModel
     
-    @State var isPresented = false
+    init(game: Binding<Game>) {
+        viewModel = GameCardViewModel(game: game)
+    }
     
     var body: some View {
         HStack {
-            Image(game.cover)
+            Image(viewModel.cover)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 120, height: .infinity)
@@ -23,15 +25,15 @@ struct GameCardView: View {
                 .background(.gray)
             
             VStack(alignment: .leading, spacing: 15) {
-                Text(game.title)
+                Text(viewModel.title)
                     .font(.title2)
                     .fontWeight(.semibold)
                     .foregroundColor(.primary)
                 
                 VStack(alignment: .leading) {
                     HStack {
-                        ForEach(game.genres, id: \.self) { genre in
-                            Text(genre)
+                        ForEach(viewModel.genres, id: \.self) {
+                            Text($0)
                                 .font(.caption)
                                 .fontWeight(.semibold)
                                 .foregroundColor(.secondary)
@@ -42,8 +44,8 @@ struct GameCardView: View {
                     }
                     
                     HStack {
-                        ForEach(game.platforms, id: \.self) { platform in
-                            Image(platform.image)
+                        ForEach(viewModel.platformLogos, id: \.self) {
+                            Image($0)
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 20, height: 20)
@@ -56,44 +58,44 @@ struct GameCardView: View {
                     Spacer()
                     
                     Button(action: {
-                        isPresented.toggle()
+                        viewModel.togglePlayingStatus()
                     }) {
                         Image(systemName: "gamecontroller.fill")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 22, height: 22)
-                            .foregroundColor(.secondary)
+                            .foregroundColor(viewModel.hasPlayingStatus ? .purple : .secondary)
                             .padding(5)
                             .background(Circle()
                                 .stroke(lineWidth: 3)
-                                .foregroundColor(.gray))
+                                .foregroundColor(viewModel.hasPlayingStatus ? .purple : .secondary))
                     }
                     Button(action: {
-                        isPresented.toggle()
+                        viewModel.togglePlanningStatus()
                     }) {
                         Image(systemName: "clock.circle")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 35, height: 35)
-                            .foregroundColor(.secondary)
+                            .foregroundColor(viewModel.hasPlanningStatus ? .orange : .secondary)
                     }
                     Button(action: {
-                        isPresented.toggle()
+                        viewModel.togglePassedStatus()
                     }) {
                         Image(systemName: "checkmark.circle")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 35, height: 35)
-                            .foregroundColor(.secondary)
+                            .foregroundColor(viewModel.hasPassedStatus ? .green : .secondary)
                     }
                     Button(action: {
-                        isPresented.toggle()
+                        viewModel.toggleAbandonedStatus()
                     }) {
                         Image(systemName: "pause.circle")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 35, height: 35)
-                            .foregroundColor(.secondary)
+                            .foregroundColor(viewModel.hasAbandonedStatus ? .blue : .secondary)
                     }
                 }
             }
@@ -107,7 +109,9 @@ struct GameCardView: View {
 }
 
 struct GameCardView_Previews: PreviewProvider {
+    @State static var game = Game.MOCK
     static var previews: some View {
-        GameCardView(game: Game.MOCK).padding(10)
+        mockServices()
+        return GameCardView(game: $game).padding(10)
     }
 }

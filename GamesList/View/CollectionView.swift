@@ -19,12 +19,12 @@ struct CollectionView: View {
                     .padding(.horizontal, 10)
 
                 LazyVStack(spacing: 10) {
-                    ForEach(Game.MOCKS, id: \.id) { game in
-                        NavigationLink(value: game) {
-                            GameRowView(game: game)
-                                .padding(.horizontal, 10)
-                        }
-                    }
+//                    ForEach(Game.MOCKS, id: \.id) { game in
+//                        NavigationLink(value: game) {
+//                            GameRowView(game: game)
+//                                .padding(.horizontal, 10)
+//                        }
+//                    }
                 }
             }
 
@@ -36,12 +36,12 @@ struct CollectionView: View {
                     .padding(.horizontal, 10)
 
                 LazyVStack(spacing: 10) {
-                    ForEach(Game.MOCKS, id: \.id) { game in
-                        NavigationLink(value: game) {
-                            GameRowView(game: game)
-                                .padding(.horizontal, 10)
-                        }
-                    }
+//                    ForEach(Game.MOCKS, id: \.id) { game in
+//                        NavigationLink(value: game) {
+//                            GameRowView(game: game)
+//                                .padding(.horizontal, 10)
+//                        }
+//                    }
                 }
             }
 
@@ -53,12 +53,12 @@ struct CollectionView: View {
                     .padding(.horizontal, 10)
 
                 LazyVStack(spacing: 10) {
-                    ForEach(Game.MOCKS, id: \.id) { game in
-                        NavigationLink(value: game) {
-                            GameRowView(game: game)
-                                .padding(.horizontal, 10)
-                        }
-                    }
+//                    ForEach(Game.MOCKS, id: \.id) { game in
+//                        NavigationLink(value: game) {
+//                            GameRowView(game: game)
+//                                .padding(.horizontal, 10)
+//                        }
+//                    }
                 }
             }
         }

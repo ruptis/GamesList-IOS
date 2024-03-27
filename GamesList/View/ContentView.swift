@@ -6,18 +6,25 @@
 //
 
 import SwiftUI
+import Factory
 
 struct ContentView: View {
+    @InjectedObject(\.contentViewModel) var viewModel
+
     var body: some View {
-        VStack {
-            WelcomeView()
+        Group {
+            if viewModel.isLogged {
+                MainTabView(selectedTab: $viewModel.selectedTab)
+            } else {
+                WelcomeView()
+            }
         }
-            .padding()
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        mockServices()
+        return ContentView()
     }
 }

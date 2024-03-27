@@ -8,13 +8,14 @@
 
 import SwiftUI
 
-enum Gender: String, CaseIterable {
-    case Female, Male, Other
-}
-
 struct EditProfileView: View {
+    @ObservedObject var viewModel: EditProfileViewModel
 
     @Environment(\.dismiss) var dismiss
+
+    init(user: User) {
+        viewModel = EditProfileViewModel(user: user)
+    }
 
     var body: some View {
         NavigationStack {
@@ -24,7 +25,6 @@ struct EditProfileView: View {
 
                 VStack {
                     Form {
-                        // image
                         Section(header: Text("Profile Picture")) {
                             HStack {
                                 Spacer()
@@ -39,31 +39,29 @@ struct EditProfileView: View {
                         }
 
                         Section(header: Text("Personal Info")) {
-                            HStack {
-                                Text("Name: ")
-                                    .font(.body)
-                                    .foregroundColor(.secondary)
+                            ProfileInputView(title: "Name", placeholder: "Name", text: $viewModel.name)
 
-                                TextField("Name", text: .constant("John Doe"))
-                                    .multilineTextAlignment(.trailing)
-                            }
+                            ProfileInputView(title: "Email", placeholder: "Email", text: $viewModel.email)
 
-                            HStack {
-                                Text("Email: ")
-                                    .font(.body)
-                                    .foregroundColor(.secondary)
+                            ProfileInputView(title: "Country", placeholder: "Country", text: $viewModel.country)
 
-                                TextField("Email", text: .constant("email@example.com"))
-                                    .multilineTextAlignment(.trailing)
-                            }
+                            ProfileInputView(title: "Links", placeholder: "Links", text: $viewModel.links)
 
-                            Picker("Gender: ", selection: .constant(Gender.Male)) {
-                                Text("Female").tag(Gender.Female)
-                                Text("Male").tag(Gender.Female)
-                                Text("Non binary").tag(Gender.Other)
+                            Picker("Gender: ", selection: $viewModel.gender) {
+                                Text("Select Gender").tag(Optional<User.Gender>(nil)).font(.body)
+                                Text("Female").tag(Optional(User.Gender.Female))
+                                Text("Male").tag(Optional(User.Gender.Male))
+                                Text("Non binary").tag(Optional(User.Gender.Other))
                             }
                                 .foregroundColor(.secondary)
-                            DatePicker("Date of Birth: ", selection: .constant(Date()), displayedComponents: .date)
+
+                            DatePicker("Date of Birth: ", selection: $viewModel.dateOfBirth, displayedComponents: .date)
+                                .foregroundColor(.secondary)
+                        }
+
+                        Section(header: Text("About Me")) {
+                            TextEditor(text: $viewModel.bio)
+                                .frame(minHeight: 100)
                                 .foregroundColor(.secondary)
                         }
                     }
@@ -77,16 +75,21 @@ struct EditProfileView: View {
                             dismiss()
                         }
                             .font(.subheadline)
-                            .foregroundColor(.black)
                     }
 
                     ToolbarItem(placement: .confirmationAction) {
                         Button("Save") {
-                            print("Save")
+                            Task {
+                                do {
+                                    try await viewModel.save()
+                                    dismiss()
+                                } catch {
+                                    print(error.localizedDescription)
+                                }
+                            }
                         }
                             .font(.subheadline)
                             .fontWeight(.semibold)
-                            .foregroundColor(.black)
                     }
                 }
         }
@@ -95,6 +98,6 @@ struct EditProfileView: View {
 
 struct EditProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        EditProfileView()
+        EditProfileView(user: User.MOCK)
     }
 }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MainTabView: View {
-    @State private var selectedTab = 0
+    @Binding var selectedTab: Int
 
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -26,7 +26,7 @@ struct MainTabView: View {
                 }
                 .tag(1)
 
-            ProfileView(user: User.MOCK)
+            ProfileView()
                 .tabItem {
                     Image(systemName: selectedTab == 2 ? "person.fill" : "person")
                         .environment(\.symbolVariants, selectedTab == 3 ? .fill : .none)
@@ -37,7 +37,8 @@ struct MainTabView: View {
 }
 
 struct MainTabView_Previews: PreviewProvider {
+    @State static var tab = 0
     static var previews: some View {
-        MainTabView()
+        MainTabView(selectedTab: $tab)
     }
 }
