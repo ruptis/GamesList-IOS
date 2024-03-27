@@ -9,7 +9,7 @@
 import SwiftUI
 import Factory
 
-struct GamesListView: View {
+struct HomeView: View {
     @State var games: [Game] = (0..<15).map { Game.Mock(id: "\($0)")}
 
     var body: some View {
@@ -33,8 +33,8 @@ struct GamesListView: View {
     }
 }
 
-struct GamesListView_Previews: PreviewProvider {
+struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        GamesListView()
+        HomeView()
     }
 }

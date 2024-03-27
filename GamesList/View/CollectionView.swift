@@ -9,61 +9,35 @@
 import SwiftUI
 
 struct CollectionView: View {
+    @State var selectedTab: Int = 0
+
     var body: some View {
-        ScrollView(showsIndicators: false) {
-            // Want to play section
-            VStack(alignment: .leading, spacing: 10) {
-                Text("Want to play")
-                    .font(.title2)
-                    .fontWeight(.bold)
-                    .padding(.horizontal, 10)
-
-                LazyVStack(spacing: 10) {
-//                    ForEach(Game.MOCKS, id: \.id) { game in
-//                        NavigationLink(value: game) {
-//                            GameRowView(game: game)
-//                                .padding(.horizontal, 10)
-//                        }
-//                    }
+        TabView(selection: $selectedTab) {
+            CollectionListView(status: .Playing)
+                .tag(0)
+                .tabItem {
+                    Label("Played", systemImage: "checkmark")
                 }
-            }
 
-            // Playing section
-            VStack(alignment: .leading, spacing: 10) {
-                Text("Playing")
-                    .font(.title2)
-                    .fontWeight(.bold)
-                    .padding(.horizontal, 10)
-
-                LazyVStack(spacing: 10) {
-//                    ForEach(Game.MOCKS, id: \.id) { game in
-//                        NavigationLink(value: game) {
-//                            GameRowView(game: game)
-//                                .padding(.horizontal, 10)
-//                        }
-//                    }
+            CollectionListView(status: .Planning)
+                .tag(1)
+                .tabItem {
+                    Label("Playing", systemImage: "gamecontroller")
                 }
-            }
 
-            // Finished section
-            VStack(alignment: .leading, spacing: 10) {
-                Text("Finished")
-                    .font(.title2)
-                    .fontWeight(.bold)
-                    .padding(.horizontal, 10)
-
-                LazyVStack(spacing: 10) {
-//                    ForEach(Game.MOCKS, id: \.id) { game in
-//                        NavigationLink(value: game) {
-//                            GameRowView(game: game)
-//                                .padding(.horizontal, 10)
-//                        }
-//                    }
+            CollectionListView(status: .Passed)
+                .tag(2)
+                .tabItem {
+                    Label("Passed", systemImage: "star")
                 }
-            }
+
+            CollectionListView(status: .Abandoned)
+                .tag(3)
+                .tabItem {
+                    Label("Abandoned", systemImage: "trash")
+                }
         }
-            .navigationTitle("Collection")
-            .navigationBarTitleDisplayMode(.inline)
+            .tabViewStyle(.page)
             .navigationDestination(for: Game.self) { game in
                 GameDetailsView(game: game)
             }

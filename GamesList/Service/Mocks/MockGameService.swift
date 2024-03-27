@@ -44,10 +44,14 @@ class MockGameService: GameService {
     }
     
     func toggleStatus(for gameId: String, to status: Game.Status, userId: String) async throws -> Game.Status? {
-        var game = try await getGame(by: gameId, userId: userId)
+        guard let id = games.indices.first(where: { games[$0].id == gameId }) else {
+            throw ServiceError.notFound
+        }
+
+        var game = games[id]
         
-        print(status)
-        
+        print("Changing \(game.status?.rawValue ?? "nil") to \(status.rawValue)")
+
         if game.status == status {
             print("reset")
             game.status = nil
@@ -57,6 +61,7 @@ class MockGameService: GameService {
         }
         
         print("\(game.status?.rawValue ?? "nil")")
+        games[id] = game
         return game.status
     }
 }

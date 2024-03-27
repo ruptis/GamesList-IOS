@@ -12,7 +12,7 @@ struct MainTabView: View {
 
     var body: some View {
         TabView(selection: $selectedTab) {
-            GamesListView()
+            HomeView()
                 .tabItem {
                     Image(systemName: selectedTab == 0 ? "house.fill" : "house")
                         .environment(\.symbolVariants, selectedTab == 0 ? .fill : .none)
