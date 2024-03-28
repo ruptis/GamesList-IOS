@@ -33,6 +33,7 @@ struct GameCardView: GameItemView {
                     .font(.title2)
                     .fontWeight(.semibold)
                     .foregroundColor(.primary)
+                        .lineLimit(1)
                 
                 VStack(alignment: .leading) {
                     HStack {
@@ -44,16 +45,20 @@ struct GameCardView: GameItemView {
                                 .padding(5)
                                 .background(Color(.systemGray5))
                                 .cornerRadius(5)
+                                    .lineLimit(1)
                         }
                     }
                     
                     HStack {
-                        ForEach(viewModel.platformLogos, id: \.self) {
-                            KFImage(URL(string: $0))
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 20, height: 20)
-                                .background(.gray)
+                        ForEach(viewModel.platforms.prefix(4), id: \.self) {
+                            Text($0)
+                                .font(.caption)
+                                .fontWeight(.semibold)
+                                .foregroundColor(.secondary)
+                                .padding(5)
+                                .background(Color(.systemGray3))
+                                .cornerRadius(5)
+                                    .lineLimit(1)
                         }
                     }
                 }

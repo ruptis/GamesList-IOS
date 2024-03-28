@@ -11,6 +11,7 @@ import FirebaseFirestoreSwift
 class GameServiceImpl: GameService {
     @Injected(\.firestore) private var firestore
     @Injected(\.firestoreEncoder) private var firestoreEncoder
+    @Injected(\.collectionService) private var collectionService
 
     private let logger = Logger(subsystem: "com.gameslist", category: "game")
 
@@ -29,15 +30,8 @@ class GameServiceImpl: GameService {
 
     func getGames(userId: String) async throws -> [Game] {
         let querySnapshot = try await firestore.collection("games").getDocuments()
-//        guard var games = try? querySnapshot.documents.compactMap( { try $0.data(as: Game.self) } ) else {
-//            logger.error("Failed to decode games")
-//            throw DecodingError()
-//        }
-        var games: [Game]
-        do {
-            games = try querySnapshot.documents.compactMap( { try $0.data(as: Game.self) } )
-        } catch {
-            logger.error("\(error.localizedDescription)")
+        guard var games = try? querySnapshot.documents.compactMap( { try $0.data(as: Game.self) } ) else {
+            logger.error("Failed to decode games")
             throw DecodingError()
         }
         try await addStatus(for: &games, userId: userId)
@@ -46,10 +40,21 @@ class GameServiceImpl: GameService {
         return games
     }
 
-    func getGames(filter: (Game) -> Bool, userId: String) async throws -> [Game] {
-        var games = try await getGames(userId: userId)
-        games = games.filter(filter)
-        logger.info("Filtered \(games.count) games")
+    func getGames(by status: Game.Status, userId: String) async throws -> [Game] {
+        let items = try await collectionService.getCollectionItems(for: status, userId: userId)
+        let gamesIds = items.map { $0.gameId! }
+
+        if gamesIds.isEmpty {
+            logger.info("No games with status: \(status.rawValue)")
+            return []
+        }
+
+        var games = try await firestore.collection("games").whereField(FieldPath.documentID(), in: gamesIds).getDocuments()
+            .documents.compactMap { try? $0.data(as: Game.self) }
+
+        addStatus(for: &games, status: status)
+        addPlatformData(to: &games)
+        logger.info("Fetched \(games.count) games with status: \(status.rawValue)")
         return games
     }
 
@@ -63,16 +68,6 @@ class GameServiceImpl: GameService {
         addPlatformData(to: &game)
         logger.info("Game with id: \(id) fetched")
         return game
-    }
-
-    func toggleStatus(for gameId: String, to status: Game.Status, userId: String) async throws -> Game.Status? {
-        let game = try await getGame(by: gameId, userId: userId)
-        let status = game.status
-        let newStatus = status == status ? nil : status
-        let data = try firestoreEncoder.encode(newStatus)
-        try await getGamesCollection(for: userId).document(gameId).setData(data)
-        logger.info("Status for game with id: \(gameId) toggled")
-        return newStatus
     }
 
     private func subscribeToPlatforms() {
@@ -103,30 +98,21 @@ class GameServiceImpl: GameService {
     }
 
     private func addStatus(for game: inout Game, userId: String) async throws {
-        guard let document = try? await getGamesCollection(for: userId).document(game.id!).getDocument() else {
+        guard let item = try await collectionService.getCollectionItem(for: game.id!, userId: userId) else {
             return
         }
 
-        guard let status = try? document.data(as: Game.Status.self) else {
-            logger.error("Failed to decode status")
-            throw DecodingError()
-        }
-
-        game.status = status
+        game.status = item.status
     }
 
     private func addStatus(for games: inout [Game], userId: String) async throws {
-        guard let querySnapshot = try? await getGamesCollection(for: userId).getDocuments() else {
-            return
-        }
-
-        let statuses = querySnapshot.documents.compactMap { try? $0.data(as: Game.Status.self) }
-        for (index, status) in statuses.enumerated() {
-            games[index].status = status
+        let items = try await collectionService.getCollectionItems(for: games.map { $0.id! }, userId: userId)
+        for (index, item) in items.enumerated() {
+            games[index].status = item.status
         }
     }
 
-    private func getGamesCollection(for userId: String) -> CollectionReference {
-        firestore.collection("users").document(userId).collection("games-collection")
+    private func addStatus(for games: inout [Game], status: Game.Status){
+        games.indices.forEach { games[$0].status = status }
     }
 }

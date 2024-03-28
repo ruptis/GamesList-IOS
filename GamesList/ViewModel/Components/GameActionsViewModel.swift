@@ -11,7 +11,7 @@ import Factory
 
 class GameActionsViewModel: ObservableObject {
     @Injected(\.authenticationService) private var authenticationService
-    @Injected(\.gameService) private var gameService
+    @Injected(\.collectionService) private var collectionService
     
     @Binding private var game: Game
 
@@ -63,8 +63,10 @@ class GameActionsViewModel: ObservableObject {
     func toggleStatus(status: Game.Status) async {
         guard let userId = authenticationService.userId else { return }
         
+        print("Toggle from \(game.status?.rawValue ?? "nil") to \(status.rawValue)")
+        
         do {
-            game.status = try await gameService.toggleStatus(for: game.id!, to: status, userId: userId)
+            game.status = try await collectionService.toggleStatus(for: game.id!, to: status, userId: userId)
         } catch {
             print(error)
         }

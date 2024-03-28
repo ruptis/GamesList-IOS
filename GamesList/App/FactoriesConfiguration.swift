@@ -35,6 +35,10 @@ extension Container {
         self { GameServiceImpl() }.singleton
     }
 
+    var collectionService: Factory<CollectionService> {
+        self { CollectionServiceImpl() }.singleton
+    }
+
     var contentViewModel: Factory<ContentViewModel> {
         self { ContentViewModel() }.singleton
     }

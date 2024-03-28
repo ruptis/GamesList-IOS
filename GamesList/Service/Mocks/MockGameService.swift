@@ -31,8 +31,8 @@ class MockGameService: GameService {
         games
     }
     
-    func getGames(filter: (Game) -> Bool, userId: String) async throws -> [Game] {
-        games.filter(filter)
+    func getGames(by status: Game.Status, userId: String) async throws -> [Game] {
+        games.filter { $0.status == status }
     }
     
     func getGame(by id: String, userId: String) async throws -> Game {

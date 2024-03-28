@@ -8,15 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		586030411138B6F7DDE457ED /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58603B0F8B8A92651DFB6188 /* Game.swift */; };
+		58603046DCBDC7B1A79C0C5F /* CollectionServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5860321C06C2AE2827B17D43 /* CollectionServiceImpl.swift */; };
 		586031E8DFFC60A37895FB96 /* InvalidDataError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5860381383B86ED5027F4CA3 /* InvalidDataError.swift */; };
 		5860320554DD7080BAE319B5 /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58603079AF8B20FE415B255F /* CollectionView.swift */; };
 		58603394F86C868338C54A87 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58603710E9E68BAF7E781B3F /* EditProfileView.swift */; };
 		5860339C5199145AF6020F4F /* CollectionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 586035FFA47A4B3278D4BB92 /* CollectionListView.swift */; };
 		586033D0F0A27BB5DD3F235E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58603BAE853B20F011B02977 /* HomeView.swift */; };
+		586033D8FD3EDAE5FBB18298 /* CollectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58603AD5E633F113B354F0EC /* CollectionService.swift */; };
 		5860348836BE51CBE269C3A9 /* GameRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5860360AAF87199E8354979E /* GameRowView.swift */; };
 		5860349569E70301FC7D5419 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58603C9B5B36FCBA691A083B /* SignUpView.swift */; };
+		586034E6C27D77313B583F64 /* CollectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58603387A14D0C4A8A86A82A /* CollectionItem.swift */; };
 		58603532257C1B11CA90B5EE /* DecodingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58603D33B09C5EC61C4FD13B /* DecodingError.swift */; };
 		5860357D006752FC1666BDEA /* GameServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5860375642F5B3C9CF129146 /* GameServiceImpl.swift */; };
+		58603691A43DDFC280370C84 /* FetchingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58603EB2319B352022FDB2ED /* FetchingError.swift */; };
 		586036EBABD081EA85A5FC14 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 586030DFF9577B0F8376CA87 /* WelcomeView.swift */; };
 		5860374672B155C54975B21B /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 586038700A55D4D32B9DD746 /* ProfileView.swift */; };
 		58603762E1235AE6025BA343 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58603D6E981A4C46E8F68B40 /* User.swift */; };
@@ -48,6 +52,7 @@
 		847059F52BA21CE20091832B /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847059F42BA21CE20091832B /* PrimaryButton.swift */; };
 		847059F72BA222610091832B /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847059F62BA222610091832B /* MainTabView.swift */; };
 		847059F92BA2337E0091832B /* GameCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847059F82BA2337E0091832B /* GameCardView.swift */; };
+		847AA0F52BB5A763000A0E4B /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 847AA0F42BB5A763000A0E4B /* Algorithms */; };
 		84A19C552BB4444B006B822D /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = 84A19C542BB4444B006B822D /* Factory */; };
 		84A19C572BB44496006B822D /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A19C562BB44496006B822D /* SignInViewModel.swift */; };
 		84A19C592BB44501006B822D /* FactoriesConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A19C582BB44501006B822D /* FactoriesConfiguration.swift */; };
@@ -73,6 +78,8 @@
 		586030F286E5983F8F250677 /* ServiceError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceError.swift; sourceTree = "<group>"; };
 		586030FF4D6089ABF270796E /* NotFoundError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotFoundError.swift; sourceTree = "<group>"; };
 		5860314F83A3952995DD3E03 /* InfoRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoRowView.swift; sourceTree = "<group>"; };
+		5860321C06C2AE2827B17D43 /* CollectionServiceImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionServiceImpl.swift; sourceTree = "<group>"; };
+		58603387A14D0C4A8A86A82A /* CollectionItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionItem.swift; sourceTree = "<group>"; };
 		58603396731C787EB9DEB05D /* GameDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameDetailsView.swift; sourceTree = "<group>"; };
 		586035FFA47A4B3278D4BB92 /* CollectionListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionListView.swift; sourceTree = "<group>"; };
 		5860360AAF87199E8354979E /* GameRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameRowView.swift; sourceTree = "<group>"; };
@@ -81,11 +88,13 @@
 		5860381383B86ED5027F4CA3 /* InvalidDataError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvalidDataError.swift; sourceTree = "<group>"; };
 		586038700A55D4D32B9DD746 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		58603995E9976D420BA9C41A /* Platform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Platform.swift; sourceTree = "<group>"; };
+		58603AD5E633F113B354F0EC /* CollectionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionService.swift; sourceTree = "<group>"; };
 		58603B0F8B8A92651DFB6188 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		58603BAE853B20F011B02977 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		58603C9B5B36FCBA691A083B /* SignUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		58603D33B09C5EC61C4FD13B /* DecodingError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecodingError.swift; sourceTree = "<group>"; };
 		58603D6E981A4C46E8F68B40 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		58603EB2319B352022FDB2ED /* FetchingError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchingError.swift; sourceTree = "<group>"; };
 		58603F40C9F21B8320FA2EBC /* EncodingError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncodingError.swift; sourceTree = "<group>"; };
 		841B87582B9F59BD006A1348 /* GamesList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GamesList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		841B875B2B9F59BD006A1348 /* GamesListApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesListApp.swift; sourceTree = "<group>"; };
@@ -129,6 +138,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				847AA0F52BB5A763000A0E4B /* Algorithms in Frameworks */,
 				8420735B2BB4F4B10036769A /* FirebaseFirestoreSwift in Frameworks */,
 				842073502BB4E80D0036769A /* Kingfisher in Frameworks */,
 				842073592BB4F4B10036769A /* FirebaseFirestore in Frameworks */,
@@ -146,6 +156,7 @@
 				58603B0F8B8A92651DFB6188 /* Game.swift */,
 				58603D6E981A4C46E8F68B40 /* User.swift */,
 				58603995E9976D420BA9C41A /* Platform.swift */,
+				58603387A14D0C4A8A86A82A /* CollectionItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -158,6 +169,7 @@
 				586030FF4D6089ABF270796E /* NotFoundError.swift */,
 				58603D33B09C5EC61C4FD13B /* DecodingError.swift */,
 				58603F40C9F21B8320FA2EBC /* EncodingError.swift */,
+				58603EB2319B352022FDB2ED /* FetchingError.swift */,
 			);
 			path = Errors;
 			sourceTree = "<group>";
@@ -228,6 +240,7 @@
 				8420735F2BB4FAB80036769A /* AuthenticationServiceImpl.swift */,
 				842073612BB4FB140036769A /* UserServiceImpl.swift */,
 				5860375642F5B3C9CF129146 /* GameServiceImpl.swift */,
+				5860321C06C2AE2827B17D43 /* CollectionServiceImpl.swift */,
 			);
 			path = Implementations;
 			sourceTree = "<group>";
@@ -289,6 +302,7 @@
 				84A19C5C2BB445EA006B822D /* UserService.swift */,
 				84A19C5E2BB445F8006B822D /* GameService.swift */,
 				58603C434C73DBB94B8450A7 /* Errors */,
+				58603AD5E633F113B354F0EC /* CollectionService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -382,6 +396,7 @@
 				842073562BB4F4B10036769A /* FirebaseAuth */,
 				842073582BB4F4B10036769A /* FirebaseFirestore */,
 				8420735A2BB4F4B10036769A /* FirebaseFirestoreSwift */,
+				847AA0F42BB5A763000A0E4B /* Algorithms */,
 			);
 			productName = GamesList;
 			productReference = 841B87582B9F59BD006A1348 /* GamesList.app */;
@@ -415,6 +430,7 @@
 				84A19C532BB4444B006B822D /* XCRemoteSwiftPackageReference "Factory" */,
 				8420734E2BB4E80D0036769A /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				842073552BB4F4B10036769A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				847AA0F32BB5A763000A0E4B /* XCRemoteSwiftPackageReference "swift-algorithms" */,
 			);
 			productRefGroup = 841B87592B9F59BD006A1348 /* Products */;
 			projectDirPath = "";
@@ -493,6 +509,10 @@
 				586037B3EE80FC62DA2626DB /* NotFoundError.swift in Sources */,
 				58603532257C1B11CA90B5EE /* DecodingError.swift in Sources */,
 				58603E0EB8BC9A56A8DDE060 /* EncodingError.swift in Sources */,
+				586033D8FD3EDAE5FBB18298 /* CollectionService.swift in Sources */,
+				58603046DCBDC7B1A79C0C5F /* CollectionServiceImpl.swift in Sources */,
+				586034E6C27D77313B583F64 /* CollectionItem.swift in Sources */,
+				58603691A43DDFC280370C84 /* FetchingError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -709,6 +729,14 @@
 				minimumVersion = 9.0.0;
 			};
 		};
+		847AA0F32BB5A763000A0E4B /* XCRemoteSwiftPackageReference "swift-algorithms" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-algorithms.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		84A19C532BB4444B006B822D /* XCRemoteSwiftPackageReference "Factory" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hmlongco/Factory.git";
@@ -739,6 +767,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 842073552BB4F4B10036769A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestoreSwift;
+		};
+		847AA0F42BB5A763000A0E4B /* Algorithms */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 847AA0F32BB5A763000A0E4B /* XCRemoteSwiftPackageReference "swift-algorithms" */;
+			productName = Algorithms;
 		};
 		84A19C542BB4444B006B822D /* Factory */ = {
 			isa = XCSwiftPackageProductDependency;

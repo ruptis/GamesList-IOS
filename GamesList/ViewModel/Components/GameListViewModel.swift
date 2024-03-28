@@ -11,11 +11,11 @@ import Factory
 class GameListViewModel: ObservableObject {
     @Injected(\.authenticationService) var authenticationService
     @Injected(\.gameService) var gameService
+
+    private let status: Game.Status?
     
-    private let filter: ((Game) -> Bool)?
-    
-    init(filter: ((Game) -> Bool)?) {
-        self.filter = filter
+    init(status: Game.Status? = nil) {
+        self.status = status
     }
     
     @Published var games: [Game] = []
@@ -25,22 +25,22 @@ class GameListViewModel: ObservableObject {
         guard let userId = authenticationService.userId else { return }
         
         do {
-            guard let filter = self.filter else {
+            guard let status = self.status else {
                 games = try await gameService.getGames(userId: userId)
                 return
             }
             
-            games = try await gameService.getGames(filter: filter, userId: userId)
+            games = try await gameService.getGames(by: status, userId: userId)
         } catch {
             print(error)
         }
     }
     
     func onGameUpdated(game: Game) {
-        guard let filter = self.filter else { return }
+        guard let status = self.status else { return }
         
-        if !filter(game) {
-            games.removeAll(where: { $0.id == game.id } )
+        if game.status != status {
+            games.removeAll { $0.id == game.id }
         }
     }
 }

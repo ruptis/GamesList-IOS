@@ -7,6 +7,6 @@ import FirebaseFirestoreSwift
 
 struct Platform: Hashable, Codable {
     @DocumentID var id: String?
+    var abbreviation: String
     var name: String
-    var image: String
 }

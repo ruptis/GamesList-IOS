@@ -14,6 +14,7 @@ import FirebaseFirestoreSwift
 class UserServiceImpl: UserService {
     @Injected(\.firestore) private var firestore
     @Injected(\.firestoreEncoder) private var firestoreEncoder
+    @Injected(\.collectionService) private var collectionService
 
     private let logger = Logger(subsystem: "com.gameslist", category: "user")
 
@@ -65,8 +66,8 @@ class UserServiceImpl: UserService {
     }
 
     private func addGamesCount(to user: inout User) async throws {
-        let querySnapshot = try await firestore.collection("users").document(user.id!).collection("games-collection").getDocuments()
-        user.gamesCount = querySnapshot.documents.count
-        user.passedGamesCount = try querySnapshot.documents.filter { try $0.data(as: Game.Status.self) == .Passed }.count
+        let items = try await collectionService.getCollectionItems(userId: user.id!)
+        user.gamesCount = items.count
+        user.passedGamesCount = items.filter { $0.status == .Passed }.count
     }
 }

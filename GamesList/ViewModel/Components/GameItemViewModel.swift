@@ -28,7 +28,7 @@ class GameItemViewModel: ObservableObject {
         game.genres
     }
     
-    var platformLogos: [String] {
-        game.platformsData?.map { $0.image } ?? []
+    var platforms: [String] {
+        game.platformsData?.map { $0.abbreviation } ?? []
     }
 }

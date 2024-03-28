@@ -32,6 +32,7 @@ struct GameRowView: GameItemView {
                     .font(.title2)
                     .fontWeight(.bold)
                     .foregroundColor(.primary)
+                        .lineLimit(1)
 
                 HStack {
                     ForEach(viewModel.genres.prefix(2), id: \.self) {
@@ -47,11 +48,15 @@ struct GameRowView: GameItemView {
                 }
 
                 HStack {
-                    ForEach(viewModel.platformLogos, id: \.self) {
-                        KFImage(URL(string: $0))
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 20, height: 20)
+                    ForEach(viewModel.platforms.prefix(3), id: \.self) {
+                        Text($0)
+                            .font(.caption)
+                            .fontWeight(.semibold)
+                            .foregroundColor(.secondary)
+                            .padding(5)
+                            .background(Color(.systemGray3))
+                            .cornerRadius(5)
+                            .lineLimit(1)
                     }
                 }
             }

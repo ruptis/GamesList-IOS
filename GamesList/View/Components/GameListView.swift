@@ -13,9 +13,9 @@ struct GameListView<GameItemViewType: GameItemView>: View {
     private let title: String
     
     init(title: String,
-         filter: ((Game) -> Bool)? = nil) {
+         status: Game.Status? = nil) {
         self.title = title
-        viewModel = GameListViewModel(filter: filter)
+        viewModel = GameListViewModel(status: status)
     }
     
     var body: some View {
