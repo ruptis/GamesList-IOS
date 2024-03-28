@@ -1,38 +1,22 @@
 //
-//  GameCardViewModel.swift
+//  GameActionsViewModel.swift
 //  GamesList
 //
-//  Created by Admin on 27.03.2024.
+//  Created by Admin on 28.03.2024.
 //
 
 import Foundation
 import SwiftUI
 import Factory
 
-class GameCardViewModel: ObservableObject {
+class GameActionsViewModel: ObservableObject {
     @Injected(\.authenticationService) private var authenticationService
     @Injected(\.gameService) private var gameService
-
+    
     @Binding private var game: Game
 
     init(game: Binding<Game>) {
         self._game = game
-    }
-
-    var cover: String {
-        game.cover
-    }
-
-    var title: String {
-        game.title
-    }
-    
-    var genres: [String] {
-        game.genres
-    }
-    
-    var platformLogos: [String] {
-        game.platforms.map { $0.image }
     }
     
     var hasPlayingStatus: Bool {

@@ -13,7 +13,7 @@ extension Game {
              title: "Game Title",
              releaseDate: "01.01.2020",
              platforms: [Platform(name: "Platform", image: "platformImage")],
-             genres: ["Action", "Adventure"],
+             genres: ["Action", "Adventureeeeeeeeeeeeeeeeeeeeeeeeee", "Other"],
              developer: "Developer",
              publisher: "Publisher",
              description: "Game description",

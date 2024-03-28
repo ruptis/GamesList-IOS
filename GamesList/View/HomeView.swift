@@ -10,25 +10,10 @@ import SwiftUI
 import Factory
 
 struct HomeView: View {
-    @State var games: [Game] = (0..<15).map { Game.Mock(id: "\($0)")}
-
     var body: some View {
         NavigationStack {
-            ScrollView(showsIndicators: false) {
-                LazyVStack(spacing: 20) {
-                    ForEach($games, id: \.id) { $game in
-                        NavigationLink(value: game) {
-                            GameCardView(game: $game)
-                                .padding(.horizontal, 10)
-                        }
-                    }
-                }
-            }
-                .navigationTitle("Games")
+            GameListView<GameCardView>(title: "Games")
                 .navigationBarTitleDisplayMode(.inline)
-                .navigationDestination(for: Game.self) { game in
-                    GameDetailsView(game: game)
-                }
         }
     }
 }

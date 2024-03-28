@@ -7,38 +7,48 @@
 //
 
 import SwiftUI
+import Kingfisher
 
-struct GameRowView: View {
-    var game: Game
+struct GameRowView: GameItemView {
+    @ObservedObject var viewModel: GameItemViewModel
+    
+    private let actionsView: GameActionsView
+    
+    init(game: Binding<Game>) {
+        viewModel = GameItemViewModel(game: game)
+        actionsView = GameActionsView(game: game, buttonsSize: 35)
+    }
 
     var body: some View {
         HStack {
-            Image(game.cover)
+            KFImage(URL(string: viewModel.cover))
                 .resizable()
                 .scaledToFit()
-                .frame(width: 50, height: 50)
+                .frame(width: 60, height: 80)
                 .background(Color.gray)
 
             VStack(alignment: .leading) {
-                Text(game.title)
-                    .font(.headline)
+                Text(viewModel.title)
+                    .font(.title2)
                     .fontWeight(.bold)
+                    .foregroundColor(.primary)
 
                 HStack {
-                    ForEach(game.genres, id: \.self) { genre in
-                        Text(genre)
+                    ForEach(viewModel.genres.prefix(2), id: \.self) {
+                        Text($0)
                             .font(.caption)
                             .fontWeight(.semibold)
                             .foregroundColor(.secondary)
                             .padding(5)
                             .background(Color(.systemGray5))
                             .cornerRadius(5)
+                            .lineLimit(1)
                     }
                 }
 
                 HStack {
-                    ForEach(game.platforms, id: \.self) { platform in
-                        Image(platform.image)
+                    ForEach(viewModel.platformLogos, id: \.self) {
+                        KFImage(URL(string: $0))
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 20, height: 20)
@@ -46,20 +56,13 @@ struct GameRowView: View {
                 }
             }
 
-            Spacer()
-
-            Button(action: {
-
-            }) {
-                Image(systemName: "heart")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 20, height: 20)
-                    .foregroundColor(.red)
+            HStack {
+                Spacer()
+                
+                actionsView
             }
         }
-            .padding(.horizontal, 10)
-            .padding(.vertical, 5)
+            .padding(5)
             .background(Color(.systemGray6))
             .cornerRadius(10)
             .shadow(radius: 5)
@@ -67,7 +70,8 @@ struct GameRowView: View {
 }
 
 struct GameRowView_Previews: PreviewProvider {
+    @State static var game = Game.MOCK
     static var previews: some View {
-        GameRowView(game: Game.MOCK)
+        GameRowView(game: $game).padding(.horizontal, 10)
     }
 }
