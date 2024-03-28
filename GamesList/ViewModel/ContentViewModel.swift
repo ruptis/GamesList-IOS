@@ -18,6 +18,7 @@ class ContentViewModel: ObservableObject {
         cancellable = authenticationService.userIdPublisher.assign(to: \.userId, on: self)
     }
 
+    @MainActor
     @Published var userId: String? {
         didSet {
             isLogged = userId != nil

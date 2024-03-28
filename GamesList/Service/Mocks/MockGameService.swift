@@ -12,7 +12,7 @@ extension Game {
         Game(id: id,
              title: "Game Title",
              releaseDate: "01.01.2020",
-             platforms: [Platform(name: "Platform", image: "platformImage")],
+             platforms: [],
              genres: ["Action", "Adventureeeeeeeeeeeeeeeeeeeeeeeeee", "Other"],
              developer: "Developer",
              publisher: "Publisher",
@@ -37,7 +37,7 @@ class MockGameService: GameService {
     
     func getGame(by id: String, userId: String) async throws -> Game {
         guard let game = games.first(where: {$0.id == id}) else {
-            throw ServiceError.invalidData
+            throw NotFoundError(entity: "Game")
         }
         
         return game
@@ -45,7 +45,7 @@ class MockGameService: GameService {
     
     func toggleStatus(for gameId: String, to status: Game.Status, userId: String) async throws -> Game.Status? {
         guard let id = games.indices.first(where: { games[$0].id == gameId }) else {
-            throw ServiceError.notFound
+            throw NotFoundError(entity: "Game")
         }
 
         var game = games[id]

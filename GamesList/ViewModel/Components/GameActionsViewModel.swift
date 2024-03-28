@@ -64,7 +64,7 @@ class GameActionsViewModel: ObservableObject {
         guard let userId = authenticationService.userId else { return }
         
         do {
-            game.status = try await gameService.toggleStatus(for: game.id, to: status, userId: userId)
+            game.status = try await gameService.toggleStatus(for: game.id!, to: status, userId: userId)
         } catch {
             print(error)
         }

@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-//import FirebaseCore
+import FirebaseCore
 
 @main
 struct GamesListApp: App {
@@ -23,7 +23,7 @@ struct GamesListApp: App {
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ app: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-        //FirebaseApp.configure()
+        FirebaseApp.configure()
         return true
     }
 }

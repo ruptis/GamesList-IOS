@@ -6,33 +6,33 @@
 //
 
 import Factory
-//import FirebaseAuth
-//import FirebaseFirestore
-//import FirebaseFirestoreSwift
+import FirebaseAuth
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 extension Container {
-//    var auth: Factory<Auth> {
-//        self { Auth.auth() }.singleton
-//    }
-//
-//    var firestore: Factory<Firestore> {
-//        self { Firestore.firestore() }.singleton
-//    }
-//
-//    var firestoreEncoder: Factory<Firestore.Encoder> {
-//        self { Firestore.Encoder() }.singleton
-//    }
+    var auth: Factory<Auth> {
+        self { Auth.auth() }.singleton
+    }
+
+    var firestore: Factory<Firestore> {
+        self { Firestore.firestore() }.singleton
+    }
+
+    var firestoreEncoder: Factory<Firestore.Encoder> {
+        self { Firestore.Encoder() }.singleton
+    }
 
     var authenticationService: Factory<AuthenticationService> {
-        self { MockAuthenticationService() }.singleton
+        self { AuthenticationServiceImpl() }.singleton
     }
 
     var userService: Factory<UserService> {
-        self { MockUserService() }.singleton
+        self { UserServiceImpl() }.singleton
     }
 
     var gameService: Factory<GameService> {
-        self { MockGameService() }.singleton
+        self { GameServiceImpl() }.singleton
     }
 
     var contentViewModel: Factory<ContentViewModel> {

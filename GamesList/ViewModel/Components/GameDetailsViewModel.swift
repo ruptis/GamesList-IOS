@@ -31,7 +31,7 @@ class GameDetailsViewModel: ObservableObject {
     }
 
     var platforms: String {
-        game.platforms.map { $0.name }.joined(separator: ", ")
+        game.platformsData?.map { $0.name }.joined(separator: ", ") ?? ""
     }
 
     var genres: String {
@@ -59,7 +59,7 @@ class GameDetailsViewModel: ObservableObject {
         guard let userId = authenticationService.userId else { return }
         
         do {
-            game = try await gameService.getGame(by: game.id, userId: userId)
+            game = try await gameService.getGame(by: game.id!, userId: userId)
         } catch {
             print(error)
         }
