@@ -107,9 +107,8 @@ class GameServiceImpl: GameService {
 
     private func addStatus(for games: inout [Game], userId: String) async throws {
         let items = try await collectionService.getCollectionItems(for: games.map { $0.id! }, userId: userId)
-        for (index, item) in items.enumerated() {
-            games[index].status = item.status
-        }
+        let itemsDict = items.reduce(into: [String: CollectionItem]()) { $0[$1.gameId!] = $1 }
+        games.indices.forEach { games[$0].status = itemsDict[games[$0].id!]?.status }
     }
 
     private func addStatus(for games: inout [Game], status: Game.Status){
